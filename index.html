@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>包游文化</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0b1120;
+    --card:#111c33;
+    --line:#1e2d4a;
+    --text:#e8eefc;
+    --muted:#8ea3c7;
+    --accent:#38bdf8;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 6vw;
+    background:rgba(11,17,32,.82);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{font-size:20px;font-weight:900;letter-spacing:1px}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:26px;font-size:15px;color:var(--muted)}
+  .nav-links a:hover{color:var(--accent)}
+  @media(max-width:640px){
+    .nav-links{gap:16px;font-size:13px}
+    .logo{font-size:17px}
+  }
+
+  header{
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;padding:120px 6vw 60px;
+    position:relative;overflow:hidden;
+  }
+  header::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(600px 300px at 50% 30%,rgba(56,189,248,.14),transparent 70%);
+    pointer-events:none;
+  }
+  h1{
+    position:relative;
+    font-size:clamp(38px,9vw,80px);
+    font-weight:900;line-height:1.15;
+    letter-spacing:2px;
+  }
+  h1 em{
+    font-style:normal;
+    color:var(--accent);
+  }
+  .hero-sub{
+    position:relative;
+    margin-top:22px;font-size:clamp(15px,3.4vw,19px);
+    color:var(--muted);max-width:620px;
+  }
+  .hero-btns{
+    position:relative;margin-top:38px;
+    display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  }
+  .btn{
+    padding:13px 30px;border-radius:999px;
+    font-weight:700;font-size:15px;
+    transition:transform .15s,box-shadow .15s;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-main{
+    background:var(--accent);
+    color:#04121f;
+    box-shadow:0 10px 30px rgba(56,189,248,.25);
+  }
+  .btn-ghost{border:1px solid var(--line);color:var(--muted)}
+  .btn-ghost:hover{color:var(--text);border-color:var(--accent)}
+
+  section{padding:90px 6vw;max-width:1180px;margin:0 auto}
+  .sec-title{
+    font-size:clamp(24px,5vw,36px);font-weight:900;
+    margin-bottom:36px;letter-spacing:1px;
+  }
+  .sec-title span{color:var(--accent)}
+
+  .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+  .about-text p{margin-bottom:16px;color:#c3d2ec}
+  .about-text strong{color:var(--accent)}
+  .about-card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:18px;padding:28px;
+  }
+  .about-card h4{font-size:15px;color:var(--muted);font-weight:600;margin-bottom:8px}
+  .about-card .big{font-size:40px;font-weight:900;color:var(--accent);margin-bottom:20px}
+  .about-card ul{list-style:none;font-size:14px;color:#c3d2ec}
+  .about-card li{
+    padding:9px 0;border-bottom:1px dashed var(--line);
+    display:flex;justify-content:space-between;
+  }
+  .about-card li:last-child{border-bottom:none}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr}}
+
+  .works{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:20px;
+  }
+  .work{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:16px;overflow:hidden;
+    transition:transform .2s,border-color .2s;
+    display:flex;flex-direction:column;
+  }
+  .work:hover{transform:translateY(-6px);border-color:var(--accent)}
+  .work-thumb{
+    height:160px;
+    background:linear-gradient(135deg,#1e2d4a,#0b1120);
+    display:flex;align-items:center;justify-content:center;
+    font-size:44px;
+  }
+  .work-body{padding:18px;flex:1;display:flex;flex-direction:column}
+  .work-body h3{font-size:17px;margin-bottom:6px}
+  .work-body p{font-size:13px;color:var(--muted);flex:1}
+  .work-link{margin-top:14px;font-size:14px;color:var(--accent);font-weight:700}
+
+  .contact{
+    text-align:center;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:22px;padding:60px 6vw;
+  }
+  .contact h2{font-size:clamp(24px,5vw,34px);font-weight:900;margin-bottom:14px}
+  .contact p{color:var(--muted);margin-bottom:30px}
+  .contact-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:30px 6vw;text-align:center;
+    color:var(--muted);font-size:13px;
+  }
+  footer .foot-logo{font-weight:900;color:var(--text);margin-bottom:6px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">包游<span>文化</span></div>
+  <div class="nav-links">
+    <a href="#about">关于</a>
+    <a href="#works">作品</a>
+    <a href="#contact">联系</a>
+  </div>
+</nav>
+
+<header>
+  <h1>包游<em>文化</em></h1>
+  <p class="hero-sub">一个初中生，在宿舍拍点搞笑视频。</p>
+  <div class="hero-btns">
+    <a class="btn btn-main" href="#works">看作品</a>
+    <a class="btn btn-ghost" href="#about">关于我们</a>
+  </div>
+</header>
+
+<section id="about">
+  <h2 class="sec-title">关于<span>我们</span></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p><strong>包游文化</strong>就是一个初中生和朋友拍视频玩，随手起的名字。</p>
+      <p>拍的都是宿舍里的搞笑短片，手机拍的，音质画质一般，凑合看。</p>
+      <p>不是公司，就是图个乐。</p>
+    </div>
+    <div class="about-card">
+      <h4>基本情况</h4>
+      <div class="big">🎬</div>
+      <ul>
+        <li><span>身份</span><span>初中生</span></li>
+        <li><span>成员</span><span>我和朋友</span></li>
+        <li><span>拍什么</span><span>宿舍搞笑短片</span></li>
+        <li><span>设备</span><span>手机</span></li>
+        <li><span>更新</span><span>有空就拍</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="works">
+  <h2 class="sec-title">我们的<span>作品</span></h2>
+  <div class="works" id="worksList"></div>
+</section>
+
+<section id="contact">
+  <div class="contact">
+    <h2>联系</h2>
+    <p>想聊天、合作、或者投稿，都可以找我们。</p>
+    <div class="contact-btns">
+      <a class="btn btn-main" href="https://space.bilibili.com/" target="_blank">B站主页</a>
+      <a class="btn btn-ghost" href="https://www.douyin.com/" target="_blank">抖音主页</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">包游文化</div>
+  <div>© 2026 包游文化 · 一个初中生的视频号</div>
+</footer>
+
+<script>
+// ========== 以后加视频，只改这里 ==========
+var videos = [
+  {
+    emoji: "🎬",
+    title: "宿舍系列 · 警匪片与小视频",
+    desc: "宿舍里拍的警匪片和日常小视频合集，后续还会更新更多剧情。设备有限，音质画质多包涵，但保证好笑。",
+    link: "https://b23.tv/Vm5GvwC"
+  }
+];
+// ==========================================
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function renderWorks(list) {
+  var box = document.getElementById('worksList');
+  if (!list || !list.length) {
+    box.innerHTML = '<div style="color:#8ea3c7">还没有作品，敬请期待。</div>';
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < list.length; i++) {
+    var v = list[i] || {};
+    html += '<a class="work" href="' + escapeHtml(v.link || '#') + '" target="_blank" rel="noopener">'
+      + '<div class="work-thumb">' + escapeHtml(v.emoji || '🎬') + '</div>'
+      + '<div class="work-body">'
+      + '<h3>' + escapeHtml(v.title || '未命名作品') + '</h3>'
+      + '<p>' + escapeHtml(v.desc || '') + '</p>'
+      + '<div class="work-link">去看 →</div>'
+      + '</div></a>';
+  }
+  box.innerHTML = html;
+}
+
+renderWorks(videos);
+</script>
+
+</body>
+</html>
